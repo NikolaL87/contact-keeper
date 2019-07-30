@@ -1,9 +1,16 @@
 const express = require('express');
+const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
+
+// Connect Database
+connectDB();
+
+// Init middleware
+app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) =>
   res.json({ msg: 'Welcome to the Contact Keeper AIPI...' })
