@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Contacts from '../contacts/Contacts';
 import ContactForm from '../contacts/ContactForm';
+import Spinner from '../layout/Spinner';
 import ContactFilter from '../contacts/ContactFilter';
 import AuthContext from '../../context/auth/authContext';
 
@@ -11,6 +12,10 @@ const Home = () => {
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);
+
+  if (authContext.loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="grid-2">
